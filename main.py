@@ -6,14 +6,14 @@ if __name__ == "__main__":
     L = 3
     T = 10
     c = 4
-    N_x = 20
+    N_x = 60
     iterations = 1000
 
     U,xd,td =solve_1d_wave_eq_forward(
         g = lambda x : 0*x ,
         f = lambda x : 0*x,
         a = lambda t : 0*t,
-        b = lambda t : np.sin(c*np.pi*t/L),
+        b = lambda t : np.sin(3*c*np.pi*t/L),
         N_x = N_x,
         iterations = iterations,
         L = L,
@@ -34,7 +34,7 @@ if __name__ == "__main__":
         line.set_data(xd,U[frame])
         return [line]
 
-    frameRateRaduction = 7
+    frameRateRaduction = 1
 
     ani = FuncAnimation(fig,
                         update,
@@ -44,7 +44,7 @@ if __name__ == "__main__":
                         )
     plt.show()
 
-    ani.save("Numerical-solution-of-wave-equation\Resonance_example.gif")
+    #ani.save("Numerical-solution-of-wave-equation\Resonance_example.gif")
 
     plt.plot(td,U.T[N_x//2])
 
