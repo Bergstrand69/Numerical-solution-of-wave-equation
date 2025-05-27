@@ -5,9 +5,9 @@ import numpy as np
 if __name__ == "__main__":
     L = 3
     T = 5
-    c = 2 
+    c = 10
     N_x = 40*5
-    iterations = 4000
+    iterations = 40000
 
     U,xd,td =solve_1d_wave_eq_backward(
         g = lambda x : 0*x ,
@@ -37,12 +37,12 @@ if __name__ == "__main__":
     ani = FuncAnimation(fig,
                         update,
                         frames = iterations +1,
-                        interval = 1000*T/iterations,
+                        interval = 100*T/iterations,
                         blit = True
                         )
     plt.show()
 
-    ani.save("Resonance_example.gif")
+    ani.save("Numerical-solution-of-wave-equation\Resonance_example.gif")
 
     plt.plot(td,U.T[N_x//2])
 
