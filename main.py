@@ -4,16 +4,16 @@ from matplotlib.animation import FuncAnimation
 import numpy as np
 if __name__ == "__main__":
     L = 3
-    T = 5
-    c = 1
-    N_x = 200
-    iterations = 500
+    T = 10
+    c = 4
+    N_x = 20
+    iterations = 1000
 
-    U,xd,td =solve_1d_wave_eq_backward(
+    U,xd,td =solve_1d_wave_eq_forward(
         g = lambda x : 0*x ,
         f = lambda x : 0*x,
         a = lambda t : 0*t,
-        b = lambda t : np.sin(4*np.pi*c*t/L),
+        b = lambda t : np.sin(c*np.pi*t/L),
         N_x = N_x,
         iterations = iterations,
         L = L,

@@ -18,7 +18,7 @@ def solve_1d_wave_eq_forward(g,f,a,b,N_x,iterations,L, T,c = 1):
 
     for j in range(iterations):
         W[j+1] = W[j] + k*(U[j,2:] + U[j,:-2] -2*U[j,1:-1])
-        U[j+1,1:-1] = U[j,1:-1] + dt*W[j]
+        U[j+1,1:-1] = U[j,1:-1] + dt*W[j+1]
 
     return U,xi,ti
 
@@ -47,8 +47,9 @@ def solve_1d_wave_eq_backward(g,f,a,b,N_x,iterations,L, T,c = 1):
         
         
         for _ in range(10): 
-            w = W[j] + k*(u[2:] + u[:-2] -2*u[1:-1])
+            temp_w = W[j] + k*(u[2:] + u[:-2] -2*u[1:-1])
             u[1:-1] = U[j,1:-1] + dt*w
+            w = temp_w
         
         W[j+1] = w
         U[j+1,1:-1] = u[1:-1]
