@@ -12,8 +12,8 @@ if __name__ == "__main__":
     U,xd,td =solve_1d_wave_eq_backward(
         g = lambda x : 0*x ,
         f = lambda x : 0*x,
-        a = lambda t : np.sin(10*t),
-        b = lambda t : 0*t,
+        a = lambda t : 0*t,
+        b = lambda t : np.sin(4*np.pi*c*t/L),
         N_x = N_x,
         iterations = iterations,
         L = L,
@@ -28,7 +28,7 @@ if __name__ == "__main__":
     line = ax.plot([],[],lw=1)[0]
     
     ax.set_xlim(0,L)
-    ax.set_ylim(-2,2)
+    ax.set_ylim(-5,5)
 
     def update(frame):
         line.set_data(xd,U[frame])
@@ -41,6 +41,8 @@ if __name__ == "__main__":
                         blit = True
                         )
     plt.show()
+
+    ani.save("Resonance_example.gif")
 
     plt.plot(td,U.T[N_x//2])
 
