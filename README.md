@@ -4,4 +4,4 @@ This project solves the 1D wave equation numerically and visualizes the results.
 
 ## Animation Example
 
-![Resonance Example](Numerical-solution-of-wave-equation/Resonance_example.gif)
+![Resonance Example](Resonance_example.gif)
