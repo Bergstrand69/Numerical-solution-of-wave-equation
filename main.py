@@ -5,9 +5,9 @@ import numpy as np
 if __name__ == "__main__":
     L = 3
     T = 5
-    c = 10
+    c = 1
     N_x = 40*5
-    iterations = 40000
+    iterations = 500
 
     U,xd,td =solve_1d_wave_eq_backward(
         g = lambda x : 0*x ,
@@ -34,10 +34,12 @@ if __name__ == "__main__":
         line.set_data(xd,U[frame])
         return [line]
 
+    frameRateRaduction = 7
+
     ani = FuncAnimation(fig,
                         update,
-                        frames = iterations +1,
-                        interval = 100*T/iterations,
+                        frames = range(0,iterations,frameRateRaduction),
+                        interval = frameRateRaduction*1000*T/iterations,
                         blit = True
                         )
     plt.show()
