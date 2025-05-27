@@ -6,7 +6,7 @@ if __name__ == "__main__":
     L = 3
     T = 5
     c = 1
-    N_x = 40*5
+    N_x = 200
     iterations = 500
 
     U,xd,td =solve_1d_wave_eq_backward(
