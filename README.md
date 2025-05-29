@@ -2,6 +2,10 @@
 
 This project solves the 1D wave equation numerically and visualizes the results.
 
-## Animation Example
+## 1D animaion example
 
-![Resonance Example](Resonance_example.gif)
+![Undamped string](Resonance_example.gif)
+
+![Damped waves](Resonance_example2D.gif)
+
+
