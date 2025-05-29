@@ -5,12 +5,12 @@ import numpy as np
 if __name__ == "__main__":
     L = 3
     T = 10
-    c = 4
-    N_x = 60
-    iterations = 1000
+    c = 20
+    N_x = 20
+    iterations = 2000
 
     U,xd,td =solve_1d_wave_eq_forward(
-        g = lambda x : 0*x ,
+        g = lambda x : 0*x*(L-x) ,
         f = lambda x : 0*x,
         a = lambda t : 0*t,
         b = lambda t : np.sin(3*c*np.pi*t/L),
