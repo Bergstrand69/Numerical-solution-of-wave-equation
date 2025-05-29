@@ -92,6 +92,6 @@ if __name__ == "__main__":
 
     frameRateRaduction = 1
     ani = FuncAnimation(fig,update, frames=range(0, iterations, frameRateRaduction), interval=frameRateRaduction*1000*T/iterations, blit=False)
-    ani.save("Numerical-solution-of-wave-equation\Resonance_example2D.gif")
+    #ani.save("Numerical-solution-of-wave-equation\Resonance_example2D.gif")
 
     plt.show()
