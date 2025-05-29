@@ -1,6 +1,6 @@
 # Numerical Solution of the Wave Equation
 
-This project solves the 1D wave equation numerically and visualizes the results.
+This project solves the wave equation numerically and visualizes the results.
 
 ## Undamped 1D string
 
