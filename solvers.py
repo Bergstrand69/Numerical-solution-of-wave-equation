@@ -1,7 +1,7 @@
 import numpy as np
 
 
-def solve_1d_wave_eq_forward(g,f,a,b,N_x,iterations,L, T,c = 1):
+def solve_1d_wave_eq_semi_forward(g,f,a,b,N_x,iterations,L, T,c = 1):
     xi = np.linspace(0,L,N_x+2)
     ti = np.linspace(0,T,iterations+1)
     W = np.zeros((iterations+1,N_x))
