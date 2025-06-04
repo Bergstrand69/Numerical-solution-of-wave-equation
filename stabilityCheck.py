@@ -60,8 +60,8 @@ if __name__ == "__main__":
     c = 1
 
 
-    Dx = np.linspace(0.001, 1, 100)
-    Dt = np.linspace(0.001, 1, 100)
+    Dx = np.linspace(0.1, 1, 100)
+    Dt = np.linspace(0.1, 1, 100)
 
     Y, X = np.meshgrid(Dt, Dx,indexing='ij')
 
@@ -70,14 +70,20 @@ if __name__ == "__main__":
         L=L,
         T=T,
         c=c
-    )[0]
+    )
+
 
     plt.figure(figsize=(6, 6))
-    plt.contourf(X, Y, region, levels=[0.5,1], colors=["lightblue"])
+    plt.contourf(X, Y, region[0], levels=[0.5,1], colors=["lightblue"])
     plt.axhline(0, color='black', linewidth=0.5)
     plt.axvline(0, color='black', linewidth=0.5)
     plt.show()
 
+    fig = plt.figure()
+    ax = fig.add_subplot(111, projection='3d')
+
+    ax.plot_surface(X, Y, region[1], cmap='coolwarm', edgecolor='none')
+    plt.show()
 
 
 
