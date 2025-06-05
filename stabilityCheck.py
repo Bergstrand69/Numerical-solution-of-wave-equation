@@ -1,4 +1,5 @@
 from solvers import solve_1d_wave_eq_semi_forward
+from solvers_heat_eq import solve_1d_heat_eq_forward
 import numpy as np
 
 import matplotlib.pyplot as plt
@@ -36,16 +37,15 @@ def is_stable_dt_dx(dx, dt, L, T, c):
 
     mu = dt * (c / dx) ** 2
 
-    U,xd,td = solve_1d_wave_eq_semi_forward(
+    U,xd,td = solve_1d_heat_eq_forward(
         g=lambda x: x*(L-x),
-        f=lambda x: 0 * x,
         a=lambda t: 0 * t,
         b=lambda t: 0 * t,
         N_x=N_x,
         iterations=iterations,
         L=L,
         T=T,
-        c=c
+        alpha=c
     )
 
     if np.max(U.T[N_x//2]) > L**2:
@@ -60,8 +60,8 @@ if __name__ == "__main__":
     c = 1
 
 
-    Dx = np.linspace(0.1, 1, 100)
-    Dt = np.linspace(0.1, 1, 100)
+    Dx = np.linspace(0.001, 1, 100)
+    Dt = np.linspace(0.001, 1, 100)
 
     Y, X = np.meshgrid(Dt, Dx,indexing='ij')
 

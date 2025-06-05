@@ -22,6 +22,63 @@ def solve_1d_wave_eq_semi_forward(g,f,a,b,N_x,iterations,L, T,c = 1):
 
     return U,xi,ti
 
+def solve_1d_wave_eq_semi_forward_no_boundary(g,f,h,N_x,iterations,L, T,c = 1, k = 0, alpha = 0, ro = 1):
+    """
+    Solves the 1D wave equation using a semi-forward method, with no boundrary.
+
+    Parameters:
+        g : function
+            Initial displacement as a function of x.
+        f : function
+            Initial velocity as a function of x.
+        h : function 
+            Right hands side of the eqation, functrion of x and t.
+        N_x : int
+            Number of spatial grid points (excluding boundaries).
+        iterations : int
+            Number of time steps.
+        L : float
+            Length of the spatial domain.
+        T : float
+            Total simulation time.
+        c : float, optional
+            Wave speed (default is 1).
+        k : float, optional
+            spring constant (default is 0).
+        alpha : float, optional
+            Damping coefficient (default is 0).
+        ro : float, optional
+            Density of medium (default is 1).
+    Returns:
+        U : ndarray
+            Solution array of shape (iterations+1, N_x+2).
+        xi : ndarray
+            Spatial grid points.
+        ti : ndarray
+            Time grid points.
+    """
+
+    xi = np.linspace(0,L,N_x+2)
+    ti = np.linspace(0,T,iterations+1)
+    W = np.zeros((iterations+1,N_x+2))
+    U = np.zeros((iterations+1,N_x+2))
+    W[0] = f(xi)
+    U[0] = g(xi)
+    
+    dx = L/(N_x+1)
+    dt = T/iterations
+    
+    r = dt * (c/dx)**2
+
+    for j in range(iterations):
+        W[j+1,1:-1] = W[j,1:-1] + r*(U[j,2:] + U[j,:-2] -2*U[j,1:-1]) + h(xi[1:-1], ti[j])*dt / ro -  k*U[j,1:-1]/c**2 * dt / ro - alpha * W[j,1:-1] * dt / ro 
+        W[j+1,-1] = -c*(U[j,-1] - U[j,-2])/(dx) - k*U[j,-1]/c**2 * dt / ro - alpha * W[j,-1] * dt / ro
+        W[j+1,0 ] = -c*(U[j,-1] - U[j,-2])/(dx) - k*U[j,0 ]/c**2 * dt / ro - alpha * W[j,0] * dt / ro
+        U[j+1] = U[j] + dt*W[j+1] 
+        
+
+    return U,xi,ti
+   
 
 def solve_1d_wave_eq_backward(g,f,a,b,N_x,iterations,L, T,c = 1):
     xi = np.linspace(0,L,N_x+2)
